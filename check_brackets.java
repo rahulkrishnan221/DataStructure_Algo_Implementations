@@ -33,23 +33,33 @@ class check_brackets {
         int p=888;
         for (int position = 0; position < text.length(); ++position) {
             char next = text.charAt(position);
-
+              
             if (next == '(' || next == '[' || next == '{') {
-               
+                
                 opening_brackets_stack.push(new Bracket(next,position));
-                p=position;
+                
             }
 
             if (next == ')' || next == ']' || next == '}') {
-               
+             
+               if(!opening_brackets_stack.empty())
+               {
                 if(opening_brackets_stack.peek().Match(next))
+                {
                   opening_brackets_stack.pop();
+                }
                   else
                   {
-                      p=position;
+                      opening_brackets_stack.push(new Bracket(next,position));
                       break;
                   }
               
+            }
+            else
+                  {
+                      opening_brackets_stack.push(new Bracket(next,position));
+                      break;
+                  }
             }
         }
         if(opening_brackets_stack.empty())
@@ -58,7 +68,7 @@ class check_brackets {
         }
         else
         {
-        System.out.println(p+1);
+        System.out.println(opening_brackets_stack.peek().position+1);
         }
         
     }
