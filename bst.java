@@ -140,6 +140,31 @@ int maxDepth(Node rt)
 			return rDepth+1;
 	}
 }
+void levelorder()
+{
+	int h= maxDepth(root);
+	for(int i=1;i<=h;i++)
+	{
+		printgivenlevel(root,i);
+	}
+
+}
+void printgivenlevel(Node rt,int level)
+{
+	if (rt==null) {
+		return;
+	}
+	else if(level==1)
+	{
+		System.out.print(rt.data+"  ");
+	}
+	else
+	{
+		printgivenlevel(rt.left,level-1);
+		printgivenlevel(rt.right,level-1);
+	}
+}
+
 }
 
 class bst
@@ -163,5 +188,7 @@ class bst
         t.printpos();
         System.out.println("Height of the tree");
         System.out.println(t.maxDepth(t.root));
+        System.out.println("Level order traversal");
+        t.levelorder();
 	}
 }
