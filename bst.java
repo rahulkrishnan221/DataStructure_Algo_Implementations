@@ -31,7 +31,7 @@ if (trav.left==null) {
 }
 	trav=trav.left;
 }
-else
+else if(value>trav.data)
 {
 	if (trav.right==null) {
 		trav.right=n;
@@ -41,9 +41,13 @@ else
 	}
 	trav=trav.right;
 }
-}
-}
 else
+{
+    break;
+}
+}
+}
+else if(value>trav.data) 
 {
 	while(trav!=null)	
 {
@@ -55,7 +59,7 @@ if (value<trav.data) {
 }
 	trav=trav.left;
 }
-else
+else if(value>trav.data)
 {
 	if (trav.right==null) {
 		trav.right=n;
@@ -65,7 +69,15 @@ else
 	}
 	trav=trav.right;
 }
+else
+{
+    break;
 }
+}
+}
+else
+{
+    
 }
 }
 void printin()
@@ -110,6 +122,24 @@ void postorder(Node rt)
 	System.out.print(rt.data+" ");
 }
 }
+//Finding height of the tree
+int maxDepth(Node rt)
+{
+	if(rt==null)
+	{
+		return 0;
+	}
+	else
+	{
+		int lDepth=maxDepth(rt.left);
+		int rDepth=maxDepth(rt.right);
+		if (lDepth>rDepth) {
+			return lDepth+1;
+		}
+		else
+			return rDepth+1;
+	}
+}
 }
 
 class bst
@@ -121,11 +151,17 @@ class bst
         t.insert(4);
         t.insert(7);
         t.insert(9);
+        t.insert(3);
+        t.insert(1);
+        t.insert(10);
+        t.insert(2);
         System.out.println("Inorder traversal");
         t.printin();
         System.out.println("Preorder traversal");
         t.printpre();
          System.out.println("Postorder traversal");
         t.printpos();
+        System.out.println("Height of the tree");
+        System.out.println(t.maxDepth(t.root));
 	}
 }
