@@ -12,6 +12,7 @@ Node(int d)
 }
 class tree
 {
+	int maxo=-999999;
 	Node root=null;
 void insert(int value)
 {
@@ -164,8 +165,43 @@ void printgivenlevel(Node rt,int level)
 		printgivenlevel(rt.right,level-1);
 	}
 }
+//checking if the tree is balanced or not
+boolean isBalanced(Node root)
+    {
+     if(root==null)
+     return true;
+     return(isBalanced(root.left) && isBalanced(root.right)&&(Math.abs(height(root.left)-height(root.right))<2));
+    }
 
 }
+//Maximum difference between ancestor node
+int maxi(Node root,int MaxValue)
+{
+	if(root==null)
+	return -99999;
+	else
+	{
+	MaxValue=Math.max(MaxValue,root.data);
+	maxdif=(MaxValue-root.data,Math.max(maxi(root.left,MaxValue),maxi(root.right,MaxValue)));
+	return maxdif;
+	}
+}
+//max diff between prev node
+ void max(Node root)
+    {
+    
+        if(root==null)
+        return;
+        else
+        {
+            max(root.left);
+            max(root.right);
+            if(root.left!=null)
+           maxo=Math.max(maxo,root.data-root.left.data);
+           if(root.right!=null)
+            maxo=Math.max(maxo,root.data-root.right.data);
+        }
+    }
 
 class bst
 {
